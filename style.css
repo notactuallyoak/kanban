@@ -377,12 +377,13 @@ font-size: 15px;
 }
 }
 
+/* ── RESPONSIVE MEDIA QUERIES ── */
+
 /* For Tablets and Mobile Devices */
 @media (max-width: 768px) {
   #app {
     flex-direction: column; /* Stack sidebar on top of the board */
     height: auto;
-    display: flex;
     min-height: 100vh;
   }
 
@@ -392,15 +393,19 @@ font-size: 15px;
     border-right: none;
     border-bottom: 1px solid var(--border);
     padding: 15px;
-    position: relative;
+    position: relative; /* Removes absolute tracking from desktop layout */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   #proj-list {
     display: flex;
     gap: 8px;
-    overflow-x: auto; /* Swipe horizontally to see projects on mobile */
+    overflow-x: auto; /* Swipe horizontally to see multiple projects on mobile */
     padding-bottom: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 0;
+    max-height: 60px;
   }
 
   .proj-btn {
@@ -409,30 +414,37 @@ font-size: 15px;
     flex-shrink: 0;
   }
 
+  /* Fix: Position control buttons cleanly below the project creation area */
   .sidebar-bottom {
-    position: static; /* Remove absolute positioning */
+    position: static; 
     display: flex;
+    flex-direction: row;
     gap: 10px;
-    margin-top: 8px;
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  .sidebar-bottom button, #new-proj-btn {
+    flex: 1; /* Makes all buttons equally share the available space */
+    padding: 10px; /* Touch-friendly size */
+    font-size: 14px;
   }
 
   #main {
-    flex: 1;
     padding: 15px;
     height: auto;
     overflow-y: visible;
   }
 
   #columns {
-    display: flex;
-    flex-direction: column; /* Stack Todo, Doing, Done vertically */
+    flex-direction: column; /* Stack Todo, Doing, Done columns vertically */
     gap: 20px;
     height: auto;
     overflow-x: visible;
   }
 
   .col {
-    width: 100%; /* Columns span full width */
+    width: 100%; /* Columns span full width of the screen */
     max-height: none;
   }
 }
@@ -449,8 +461,9 @@ font-size: 15px;
     gap: 8px;
   }
 
+  /* Stack export/import vertically if the phone screen is extremely narrow */
   .sidebar-bottom {
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
   }
 }
