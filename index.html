@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <nav id="sidebar">
+        <h1>📋 Projects</h1>
+        <div id="proj-list"></div>
+        <button id="new-proj-btn">+ New project</button>
+        <div class="sidebar-bottom">
+          <button onclick="exportBoard()">⬇ Export board</button>
+          <button onclick="document.getElementById('import-file').click()">
+            ⬆ Import board
+          </button>
+          <input
+            type="file"
+            id="import-file"
+            accept=".json"
+            style="display: none"
+            onchange="importBoard(event)"
+          />
+        </div>
+      </nav>
+      <main id="main">
+        <div id="empty-state">Select or create a project →</div>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
