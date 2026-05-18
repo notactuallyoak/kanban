@@ -220,6 +220,7 @@ opacity: 0.8;
 
 /* ── Columns ── */
 #columns {
+display: flex;
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 gap: 14px;
@@ -374,4 +375,82 @@ font-size: 15px;
 #main {
     padding: 1.25rem 1rem;
 }
+}
+
+/* For Tablets and Mobile Devices */
+@media (max-width: 768px) {
+  #app {
+    flex-direction: column; /* Stack sidebar on top of the board */
+    height: auto;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  #sidebar {
+    width: 100%; /* Sidebar takes full width on mobile */
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 15px;
+    position: relative;
+  }
+
+  #proj-list {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto; /* Swipe horizontally to see projects on mobile */
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  .proj-btn {
+    margin-bottom: 0;
+    white-space: nowrap; /* Prevent project names from breaking onto multiple lines */
+    flex-shrink: 0;
+  }
+
+  .sidebar-bottom {
+    position: static; /* Remove absolute positioning */
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  #main {
+    flex: 1;
+    padding: 15px;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  #columns {
+    display: flex;
+    flex-direction: column; /* Stack Todo, Doing, Done vertically */
+    gap: 20px;
+    height: auto;
+    overflow-x: visible;
+  }
+
+  .col {
+    width: 100%; /* Columns span full width */
+    max-height: none;
+  }
+}
+
+/* For Extra Small Mobile Devices (Phones) */
+@media (max-width: 480px) {
+  #board-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  #input-row {
+    gap: 8px;
+  }
+
+  .sidebar-bottom {
+    flex-direction: column;
+    gap: 5px;
+  }
 }
